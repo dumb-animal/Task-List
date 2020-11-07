@@ -1,10 +1,9 @@
-#include "classes\TaskList.cpp"
-// #include "classes\App.cpp"
+#include "classes\App.cpp"
 
 int main()
 {
-    TaskList taskList;
-    taskList.start();
+    App app;
+    app.start();
 
     return 0;
 }

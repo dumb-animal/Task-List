@@ -10,47 +10,6 @@ using namespace std;
 class TaskList
 {
 public:
-
-    void start()
-    {
-        loop();
-    }
-
-private:
-    struct Task
-    {
-        int id;
-        string text;
-    };
-
-    map<int, Task> tasks;
-    int _id = 0;
-
-    enum options
-    {
-        Exit,
-        Add_Tasks,
-        Show_Tasks,
-        Change_Task,
-        Delete_Task,
-    };
-
-    int CreateId()
-    {
-        return _id++;
-    }
-
-    void ShowMenu()
-    {
-        clear_console();
-        cout << "Menu:" << endl;
-        cout << options::Add_Tasks << " Add tasks" << endl;
-        cout << options::Show_Tasks << " Show tasks" << endl;
-        cout << options::Change_Task << " Change task" << endl;
-        cout << options::Delete_Task << " Delete task" << endl;
-        cout << options::Exit << " exit" << endl;
-    }
-
     void AddTasks()
     {
         clear_console();
@@ -72,7 +31,7 @@ private:
     void ShowTasks()
     {
         clear_console();
-        cout << "id\ttask" << endl;
+        cout << "id:\ttask:" << endl;
         for (const auto [key, task] : tasks)
             cout << task.id << "\t" << task.text << endl;
         pause_console();
@@ -122,31 +81,18 @@ private:
         }
     }
 
-    void loop()
+private:
+    struct Task
     {
-        bool isExit = false;
-        while (!isExit)
-        {
-            ShowMenu();
-            int option = ReadNumber();
-            switch (option)
-            {
-            case options::Add_Tasks:
-                AddTasks();
-                break;
-            case options::Show_Tasks:
-                ShowTasks();
-                break;
-            case options::Change_Task:
-                ChangeTask();
-                break;
-            case options::Delete_Task:
-                DeleteTask();
-                break;
-            case options::Exit:
-                isExit = true;
-                break;
-            }
-        }
+        int id;
+        string text;
+    };
+
+    map<int, Task> tasks;
+    int _id = 0;
+
+    int CreateId()
+    {
+        return _id++;
     }
 };
